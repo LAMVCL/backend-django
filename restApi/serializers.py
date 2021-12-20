@@ -7,5 +7,4 @@ class RestApiSerializer(serializers.ModelSerializer):
     class Meta:
         model = RestApi
         #Le pasamos los campos a serializar en este caso id y name.
-        fields = ('id',
-                  'name')
+        fields = ('id','name')

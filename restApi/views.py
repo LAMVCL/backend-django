@@ -33,9 +33,13 @@ def todo_detail(request,id = 0):
         serializer = RestApiSerializer(todo, data=data_todo)
         if serializer.is_valid():
             serializer.save()
-            return JsonResponse(serializer.data)
+            return JsonResponse(serializer.data, status=200)
         return JsonResponse(serializer.errors, status=400)
     elif request.method == 'DELETE':
-        todo = RestApi.objects.get(id=id)
-        todo.delete()
-        return HttpResponse(status=204);
+        try:
+            todo = RestApi.objects.get(id=id)
+            todo.delete()
+            return HttpResponse(status=200);
+        except:
+            return HttpResponse(status=400);
+        
